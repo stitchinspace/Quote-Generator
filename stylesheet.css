@@ -1,6 +1,6 @@
 @font-face {
 font-family: 'Averia';
-  src: url('AveriaSansLibre-Light.ttf') format ('truetype');
+  src: url('AveriaSansLibre-Light.ttf');
 }
 html {
   -webkit-box-sizing: border-box;
