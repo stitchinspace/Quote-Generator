@@ -1,7 +1,8 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", function() { //loads page after html loads
 
-    var canvas = document.createElement('canvas');
+    (function () {
+var canvas = document.createElement('canvas');
     canvas.width = window.innerWidth * .95;
     canvas.height = window.innerHeight * .95;
     canvas.id = "canvas";
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() { //loads page after ht
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "black";
     context.strokeRect(0, 0, canvas.width, canvas.height);
+return window.context=context;
+})();
 
     function CircleConstructor() {
         this.radius = Math.floor(Math.random(100) * (canvas.width / 3));
@@ -50,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() { //loads page after ht
                 context.fillStyle = elements[j].color;
                 context.fill();
                 xhr();
+break;
             }
         }
     }
@@ -63,20 +67,23 @@ document.addEventListener("DOMContentLoaded", function() { //loads page after ht
 
     function makeRequest(xhr) {
         //console.log("request made");
-        if (xhr) {
+        if ("withCredentials" in xhr){
             console.log("processing xhr");
-            // var url = "http://api.forismatic.com/api/1.0/";
+            // var url = "http://api.forismatic.com/api/1.0";
             // var url = "http://quotesondesign.com/wp-json/posts?";
-            // var url = "http://quotes.stormconsultancy.co.uk/random.json";
-            //var url = "http://quotes.stormconsultancy.co.uk/quotes/1.json?callback=processResponse";
-            var url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
+            var url = "http://cors.io/?u=http://quotes.stormconsultancy.co.uk/random.json";
+          //  var url = "http://quotes.stormconsultancy.co.uk/quotes/1.json?callback=processResponse";
+            //var url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
 try {
                 console.log("in try");
-                xhr.onreadyStateChange = processResponse;
-                xhr.open('GET', url);
-                xhr.send(null);
+                xhr.onload = processResponse;
+                //xhr.onerror = function() {console.log("request error");}
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader("Content-type", "text/plain");
+                xhr.responseType = 'text';
+xhr.send();
             } catch (e) {
-                console.log("data unavailable");
+                console.log(e);
             }
         }
 
@@ -86,6 +93,7 @@ try {
             if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status <= 400) {
                 var data = JSON.parse(xhr.responseText);
                 console.log(data);
+document.querySelector("#quotebox").innerHTML= '"' + data.quote + '" -' + data.author;
             }
         }
     }
