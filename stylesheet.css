@@ -1,3 +1,7 @@
+@font-face {
+font-family: 'Averia';
+  src: url('AveriaSansLibre-Light.ttf') format ('truetype');
+}
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,7 +17,9 @@ padding: 0;
   display: block;
   overflow: auto;
 }
-
+body {
+font-family: 'Averia', sans-serif;
+}
 #canvas {
 border: 10px solid black;
     padding: 0;
@@ -27,4 +33,5 @@ position: fixed;
 margin: 5vw;
 font-size: 200%;
 border: 5px solid black;
+
 }
