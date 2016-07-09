@@ -60,7 +60,7 @@ break;
     }
 
     function xhr() {
-        console.log("xhr called");
+        //console.log("xhr called");
         if (window.XMLHttpRequest) var xhr = new XMLHttpRequest();
         //console.log(xhr);
         makeRequest(xhr);
@@ -76,7 +76,7 @@ break;
           //  var url = "http://quotes.stormconsultancy.co.uk/quotes/1.json?callback=processResponse";
             //var url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
 try {
-                console.log("in try");
+                //console.log("in try");
                 xhr.onload = processResponse;
                 //xhr.onerror = function() {console.log("request error");}
                 xhr.open('GET', url, true);
@@ -89,8 +89,8 @@ xhr.send();
         }
 
         function processResponse() {
-            console.log("processResponse called");
-            console.log(xhr.readyState, xhr.status);
+            //console.log("processResponse called");
+            //console.log(xhr.readyState, xhr.status);
             if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status <= 400) {
                 var data = JSON.parse(xhr.responseText);
                 console.log(data);
