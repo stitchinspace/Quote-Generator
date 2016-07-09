@@ -69,9 +69,10 @@ break;
     function makeRequest(xhr) {
         //console.log("request made");
         if ("withCredentials" in xhr){
-            console.log("processing xhr");
+            //console.log("processing xhr");
             // var url = "http://api.forismatic.com/api/1.0";
-             var url = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1?";
+             var url = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
+                         //https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1?
             //var url = "http://cors.io/?u=http://quotes.stormconsultancy.co.uk/random.json";
           //  var url = "http://quotes.stormconsultancy.co.uk/quotes/1.json?callback=processResponse";
             //var url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
@@ -93,7 +94,7 @@ xhr.send();
             //console.log(xhr.readyState, xhr.status);
             if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status <= 400) {
                 var data = JSON.parse(xhr.responseText);
-                console.log(data);
+                //console.log(data);
 document.querySelector("#quotebox").innerHTML= data[0].content + ' -' + data[0].title;
             }
         }
