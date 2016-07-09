@@ -39,7 +39,8 @@ return window.context=context;
     document.querySelector("body").addEventListener("click", recolor);
 
     function recolor(event) {
-        for (var j = 0; j <= elements.length - 1; j++) {
+          console.log("recolor called");
+          for (var j = 0; j <= elements.length - 1; j++) {
             var clientx = event.clientX;
             var clienty = event.clientY;
             var x = elements[j].xpos;
